@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns:View="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ViewModel="clr-namespace:MovieBrowser.ViewModels.MovieDetail"
+             mc:Ignorable="d"
+    xmlns:local="clr-namespace:MovieBrowser.Converter"
+             x:Class="MovieBrowser.Views.MovieDetailPage">
+    <ContentPage.BindingContext>
+        <ViewModel:MovieDetailViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ImageSourceConverter x:Key="linktoimage" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems >
+        <ToolbarItem Text="Movie Detail                    " />
+        <ToolbarItem IconImageSource=""/>
+    </ContentPage.ToolbarItems>
+   
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="LightGray">
+            <StackLayout  HorizontalOptions="Fill" BackgroundColor="White">
+                <!--<Image>
+                    <Image.Source>
+                        <FileImageSource File="{Binding ImagePath}" />
+                    </Image.Source>
+                </Image>-->
+                <Image Source="logo1" />
+                <!--<Image Source="{Binding ImagePath}" />-->
+                <!--<Image Source="{Binding ImagePath,Converter={StaticResource linktoimage}}" />-->
+            </StackLayout>
+            <Frame CornerRadius="5" Margin="10">
+                <StackLayout BackgroundColor="White" Orientation="Vertical"  HorizontalOptions="Start" >
+                    <Label FontSize="Body" TextColor="Black" Text="{Binding MovieTitle}" FontAttributes="Bold" MaxLines="1" />
+                    <Label  FontSize="12" Text="{ Binding ReleaseDate }" FontAttributes="Bold" MaxLines="1"   />
+                    <Label  FontSize="Body" TextColor="Black" Text="{ Binding UserRating  }"  FontAttributes="Bold" MaxLines="1" />
+                    <Label  FontSize="12" Text="{Binding Overview}"   Margin="13" />
+                </StackLayout>
+            </Frame>
+            <StackLayout HeightRequest="70" VerticalOptions="EndAndExpand" BackgroundColor="White">
+                <Label FontSize="Body" VerticalOptions="Center" VerticalTextAlignment="Center" TextColor="Black" HorizontalOptions="Center" Text="Continue To CheckOut" FontAttributes="Bold" MaxLines="1"  Margin="15" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

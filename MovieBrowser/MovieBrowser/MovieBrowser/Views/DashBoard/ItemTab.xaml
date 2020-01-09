@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MovieBrowser.Views.DashBoard.ItemTab">
+    <ContentPage.Content>
+        <StackLayout  BackgroundColor="LightGray">
+            <StackLayout Orientation="Vertical">
+            <StackLayout HorizontalOptions="End">
+                    <Button Text="FILTER" TextColor="Black" Command="{Binding OpenFilterCommand}" BackgroundColor="Transparent" ImageSource="filter.png" HorizontalOptions="FillAndExpand" Margin="5"  />
+            </StackLayout>
+            <ListView x:Name="listView" SeparatorVisibility="None" ItemsSource="{Binding MovieList,Mode=TwoWay}" SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" BackgroundColor="LightGray"
+              RowHeight="150" >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="10" Margin="5">
+                                <StackLayout Orientation="Horizontal"  BackgroundColor="White">
+                                        <Image Source="{Binding ImagePath}"/>
+                                        <!--<Image Source="logo1" />-->
+                                        <StackLayout Orientation="Vertical">
+                                        <Label TextColor="Black" Text="{Binding OriginalTitle}"
+                               FontAttributes="Bold" FontSize="Body" MaxLines="1"/>
+                                        <Label  FontSize="10" Text="{Binding Overview}"
+                               FontAttributes="None" MaxLines="2" />
+                                        <Label FontSize="Body" TextColor="Black" Text="{Binding ShowVoteAverage}"
+                               FontAttributes="Bold" MaxLines="1"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            </StackLayout>
+            <StackLayout Margin="30,10" IsVisible="{Binding Filter_IsVisible}" Orientation="Vertical" VerticalOptions="End">
+                <Label Text="FILTER" TextColor="Black" FontSize="Body"/>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsMostRecent}" />
+                    <Label Text="Most Recent" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox IsChecked="{Binding IsHighestRated}" />
+                    <Label Text="Highest Rated" VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                    <Button BackgroundColor="Transparent" Text="CANCEL" Command="{Binding CancelFilterCommand}"/>
+                    <Button BackgroundColor="Transparent" Text="APPLY" TextColor="Blue" Command="{Binding ApplyFilterCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
